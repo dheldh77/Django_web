@@ -1,0 +1,9 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.pub_date }}</p>
+<p>{{ post.content }}</p>
+{% for photo in post.photo_set.all%}
+    <img src="{{photo.image.url}}" width="50"><br>
+{% endfor %}
+<a href="{% url 'index' %}">홈으로</a>
+<a href="{% url 'delete' post.id %}">삭제</a>
+<a href="{% url 'update' post.id %}">수정</a>

@@ -1,0 +1,7 @@
+<form method="POST" action="{% url 'regist' %}">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <input type="submit" value="작성하기">
+</form>

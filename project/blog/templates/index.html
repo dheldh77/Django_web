@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for post in posts %}
+        <div class="card w-75">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.pub_date }}</p>
+                <p class="card-text">{{post.user.username}}</p>
+                <a href="{% url 'detail' post.id %}" class="btn btn-primary">자세히 보기</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- pagination  -->
+    <!-- 현재 page 보다 더 이전의 page가 존재한다면 -->
+    {% if posts.has_previous %}
+        <!-- 제일 첫 page -->
+        <a href="?page=1">1</a>
+        <!-- 바로 이전 page -->
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+    {% endif %}
+        <!-- 현재 page -->
+        <span>{{posts.number}}<span>
+    <!-- 현재 page보다 더 이후의 page가 존재한다면 -->
+    {% if posts.has_next %}
+        <!-- 바로 다음 page -->
+        <a href="?page={{posts.next_page_number}}">Next</a>
+        <!-- 마지막 page -->
+        <a href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>
+    {% endif %}
+{% endblock content %}
